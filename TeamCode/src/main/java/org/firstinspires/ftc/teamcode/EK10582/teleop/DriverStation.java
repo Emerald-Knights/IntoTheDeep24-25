@@ -47,6 +47,4 @@ public class DriverStation {
         }
     }
 
-    //in teleop: DriverStation.getCollection() would return whether or not button a was just pressed & also update a
-    //associates button press combinations with the functions that they want to accomplish rather than clouding up teleop
 }
