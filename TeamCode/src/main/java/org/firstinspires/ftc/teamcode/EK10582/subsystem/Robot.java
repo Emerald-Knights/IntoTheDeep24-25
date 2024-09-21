@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
 import java.util.Arrays;
@@ -21,6 +22,8 @@ public class Robot {
 
     //declare hardware here
     public DcMotorEx leftFront, leftBack, rightFront, rightBack;
+
+    public Servo tServo;
 
     public BHI260IMU imu;
 
@@ -45,6 +48,8 @@ public class Robot {
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
+
+        tServo = hardwareMap.get(Servo.class, "test Servo");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
