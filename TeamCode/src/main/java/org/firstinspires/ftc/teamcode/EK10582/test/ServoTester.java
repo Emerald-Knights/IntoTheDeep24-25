@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
 import org.firstinspires.ftc.teamcode.EK10582.subsystem.Robot;
 
 @TeleOp(name="Servo Tester (intake arm port)")
+@Disabled
 public class ServoTester extends EKLinear {
 
     @Override
