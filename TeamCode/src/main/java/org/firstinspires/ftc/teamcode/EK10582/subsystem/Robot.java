@@ -23,7 +23,7 @@ public class Robot {
     //declare hardware here
     public DcMotorEx leftFront, leftBack, rightFront, rightBack;
 
-    public Servo tServo;
+    public Servo tServo1, tServo2;
     //public Servo Wrist, Hand;
 
     public BHI260IMU imu;
@@ -50,7 +50,8 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-        //tServo = hardwareMap.get(Servo.class, "test Servo");
+        tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        tServo2 = hardwareMap.get(Servo.class, "testServo2");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
