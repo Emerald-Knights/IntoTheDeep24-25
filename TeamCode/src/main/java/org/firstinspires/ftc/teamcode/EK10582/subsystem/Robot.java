@@ -8,7 +8,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.openftc.easyopencv.OpenCvWebcam;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +32,8 @@ public class Robot {
 
     public BHI260IMU imu;
 
+    public WebcamName camera;
+    public OpenCvWebcam webcam;
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
