@@ -21,7 +21,7 @@ public class Robot {
     EKLinear linearOpMode;
 
     //declare hardware here
-    public DcMotorEx leftFront, leftBack, rightFront, rightBack;
+    public DcMotorEx leftFront, leftBack, rightFront, rightBack, leftSlide, rightSlide;
 
     public Servo tServo;
     //public Servo Wrist, Hand;
@@ -60,6 +60,9 @@ public class Robot {
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        leftSlide = hardwareMap.get(DcMotorEx.class, "leftSlide");
+        rightSlide = hardwareMap.get(DcMotorEx.class, "rightSlide");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");
 
