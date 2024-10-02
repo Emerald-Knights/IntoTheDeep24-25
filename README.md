@@ -73,5 +73,5 @@
 
 
       5. ### test
-	    This folder is for testing singular motors, servos, or other hardware. For the sake of simplicity, we do not need to make a subsystem for everything.
+         This folder is for testing singular motors, servos, or other hardware. For the sake of simplicity, we do not need to make a subsystem for everything.
 
