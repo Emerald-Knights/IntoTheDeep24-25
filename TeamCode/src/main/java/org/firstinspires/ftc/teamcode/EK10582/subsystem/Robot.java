@@ -24,6 +24,8 @@ public class Robot {
     public DcMotorEx leftFront, leftBack, rightFront, rightBack;
 
     public Servo tServo;
+    public Servo clawServo;
+    public Claw claw = new Claw();
     //public Servo Wrist, Hand;
 
     public BHI260IMU imu;
