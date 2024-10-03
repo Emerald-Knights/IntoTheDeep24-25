@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.EK10582.subsystem;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+
+// TODO: set up PID, change subsystem constants for slide states
 public class Slides {
     public static double p = 0.0022, i = 0, d = 0.0001, f = 0.08;
     public static double adjustableTarget = 0;

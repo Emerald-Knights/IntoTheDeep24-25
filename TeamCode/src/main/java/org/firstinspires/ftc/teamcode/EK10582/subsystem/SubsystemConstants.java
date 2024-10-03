@@ -4,7 +4,7 @@ public class SubsystemConstants {
     public static double SPEED = 0.8;
 
     // april tags (ripped from centerstage)
-    public static int targetAprilTag = 1;
+    public static int targetAprilTag = 11;
     public static boolean aprilTagsEnabled = true;
     public static int decimation = 3;
 

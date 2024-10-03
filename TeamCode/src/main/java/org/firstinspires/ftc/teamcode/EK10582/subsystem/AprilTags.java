@@ -17,6 +17,7 @@ public class AprilTags {
 
     public int targetAprilTag = SubsystemConstants.targetAprilTag;
     //TODO: make this changable by buttons or sm so you can change what april tag you're looking for
+    // TODO: set up roadrunner etc for relocalize method
 
     public boolean seeTag = false;
     public double tagX;
@@ -100,7 +101,7 @@ public class AprilTags {
 
             }
             //amount of detections in detections array
-            if(currentDetections.size() == 0){
+            if(currentDetections.isEmpty()){
                 seeTag = false;
             }
         }
