@@ -21,6 +21,6 @@ public class Claw extends Subsystem{
     }
     public void printToTelemetry(Telemetry telemetry){
         telemetry.addData("State", currentState);
-w
+
     }
 }
