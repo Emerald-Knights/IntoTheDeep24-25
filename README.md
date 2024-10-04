@@ -93,8 +93,10 @@
 
          leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE); or leftFront.setDirection(DCMotorSimple.Direction.REVERSE);
 
-         The subsystems uses a for each loop to go through multiple subsystems so the robot can simultaneously update its subsystems depending on inputs
-         The point of the for each loop is so that the subsystems each get updated and then it keeps on going back in a loop until its told to stop
+         The subsystems uses a for each loop to go through multiple subsystems so the robot can simultaneously update its subsystems depending on inputs.
+
+         The point of the for each loop is so that the subsystems each get updated and then it keeps on going back in a loop until its told to stop.
+
          It also sets the telemetry for the phone and telemetry is the information that we can see that the robot when checking the phone.
 
       8. ### EKLinear
