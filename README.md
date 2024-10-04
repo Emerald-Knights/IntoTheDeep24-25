@@ -101,5 +101,10 @@
          The waitForStart method sets the telemetry up for us to see on the phone
          It sets the match timer, driver station(controllers), and the dashboard(allTelemetry)
          While the match hasn't started and if the stop isn't requested the telemtery keeps updating
+
+      8. ### AutonBase
+         AutonBase extends EKLinear
+         AutonBase is the base of the code for Autonomous mode
+         Has a method for waitForStart and intializes the telemetry and the code is the same as EKLinear
    
 
