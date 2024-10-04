@@ -22,8 +22,6 @@ public class MecanumDrive extends Subsystem{
         double rb = ly + lx - rx;
 
 
-
-
         double max = Math.max(Math.max(Math.abs(lb), Math.abs(lf)), Math.max(Math.abs(rb), Math.abs(rf)));
         double magnitude = Math.sqrt((lx * lx) + (ly * ly) + (rx * rx));
         if (max == 0) {

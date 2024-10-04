@@ -24,14 +24,16 @@ public class Robot {
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, leftSlide, rightSlide;
 
     public Servo tServo1, tServo2;
-    //public Servo Wrist, Hand;
+    public Servo clawServo;
 
+    //public Servo Wrist, Hand;
     public BHI260IMU imu;
 
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
+    public Claw claw = new Claw();
 
     public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides);
     public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
@@ -50,6 +52,8 @@ public class Robot {
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
+
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
 
         tServo1 = hardwareMap.get(Servo.class, "testServo1");
         tServo2 = hardwareMap.get(Servo.class, "testServo2");
