@@ -76,8 +76,11 @@
          This folder is for testing singular motors, servos, or other hardware. For the sake of simplicity, we do not need to make a subsystem for everything.
 
       6. ### Robot
-         There are 2 main parts to Robot: It'll go through all of the subsystems above in the list and update each of them and it names the hardware map
-         It'll name the different hardware on the robot like the Servos and Claws so that the other classes can use them
+         There are 2 main parts to Robot:
+
+         * It'll go through all of the subsystems above in the list and update each of them and it names the hardware map
+         * It'll name the different hardware on the robot like the Servos and Claws so that the other classes can use them
+           
          For the hardware map most of the statments will follow this format:
 
          public Servo tServo;
@@ -94,7 +97,7 @@
          The point of the for each loop is so that the subsystems each get updated and then it keeps on going back in a loop until its told to stop
          It also sets the telemetry for the phone and telemetry is the information that we can see that the robot when checking the phone.
 
-      7. ### EKLinear
+      8. ### EKLinear
          EKLinear extends LinearOpMode
          EkLinears main goal is for setting up the instances (shortcut to refer to instance of Robot Class and telemtery for the robot during the match)
          LinearOpMode makes code run sequentially for the robot
@@ -102,11 +105,11 @@
          It sets the match timer, driver station(controllers), and the dashboard(allTelemetry)
          While the match hasn't started and if the stop isn't requested the telemtery keeps updating
 
-      8. ### AutonBase
+      9. ### AutonBase
          AutonBase extends EKLinear
          AutonBase is the base of the code for Autonomous mode
          Has a method for waitForStart and intializes the telemetry and the code is the same as EKLinear
 
-      9. ### Action
+      10. ### Action
          Action are the different actions for Autonomous mode by combining different actions like grabbing with the claw and moving it into one
 
