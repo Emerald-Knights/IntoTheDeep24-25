@@ -75,3 +75,22 @@
       5. ### test
          This folder is for testing singular motors, servos, or other hardware. For the sake of simplicity, we do not need to make a subsystem for everything.
 
+      6. ### Robot
+         There are 2 main parts to Robot: It'll go through all of the subsystems above in the list and update each of them and it names the hardware map
+         It'll name the different hardware on the robot like the Servos and Claws so that the other classes can use them
+         For the hardware map most of the statments will follow this format:
+
+         public Servo tServo;
+
+         and
+
+         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+
+         and
+
+         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE); or leftFront.setDirection(DCMotorSimple.Direction.REVERSE);
+
+         The subsystems uses a for each loop to go through multiple subsystems so the robot can simultaneously update its subsystems depending on inputs
+         The point of the for each loop is so that the subsystems each get updated and then it keeps on going back in a loop until its told to stop
+         It also sets the telemetry for the phone and telemetry is the information that we can see that the robot when checking the phone.
+
