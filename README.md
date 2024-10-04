@@ -100,18 +100,26 @@
          It also sets the telemetry for the phone and telemetry is the information that we can see that the robot when checking the phone.
 
       8. ### EKLinear
-         EKLinear extends LinearOpMode
-         EkLinears main goal is for setting up the instances (shortcut to refer to instance of Robot Class and telemtery for the robot during the match)
-         LinearOpMode makes code run sequentially for the robot
-         The waitForStart method sets the telemetry up for us to see on the phone
-         It sets the match timer, driver station(controllers), and the dashboard(allTelemetry)
-         While the match hasn't started and if the stop isn't requested the telemtery keeps updating
+         EKLinear extends LinearOpMode.
+         
+         EkLinears main goal is for setting up the instances (shortcut to refer to instance of Robot Class and telemtery for the robot during the match).
+         
+         LinearOpMode makes code run sequentially for the robot.
+         
+         The waitForStart method sets the telemetry up for us to see on the phone.
+         
+         It sets the match timer, driver station(controllers), and the dashboard(allTelemetry).
+         
+         While the match hasn't started and if the stop isn't requested the telemtery keeps updating.
+         
 
-      9. ### AutonBase
-         AutonBase extends EKLinear
-         AutonBase is the base of the code for Autonomous mode
-         Has a method for waitForStart and intializes the telemetry and the code is the same as EKLinear
+      10. ### AutonBase
+          AutonBase extends EKLinear
+          
+          AutonBase is the base of the code for Autonomous mode
+          
+          Has a method for waitForStart and intializes the telemetry and the code is the same as EKLinear
 
-      10. ### Action
-         Action are the different actions for Autonomous mode by combining different actions like grabbing with the claw and moving it into one
+      12. ### Action
+          Action are the different actions for Autonomous mode by combining different actions like grabbing with the claw and moving it into one
 
