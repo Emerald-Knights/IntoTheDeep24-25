@@ -8,7 +8,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.openftc.easyopencv.OpenCvWebcam;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,14 +33,18 @@ public class Robot {
     //public Servo Wrist, Hand;
     public BHI260IMU imu;
 
+    public WebcamName camera;
+    public OpenCvWebcam webcam;
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Claw claw = new Claw();
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
+    public AprilTags aprilTags = new AprilTags();
+
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, aprilTags);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, aprilTags);
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
 //    private ArrayList<Action> actions = new ArrayList<Action>();
