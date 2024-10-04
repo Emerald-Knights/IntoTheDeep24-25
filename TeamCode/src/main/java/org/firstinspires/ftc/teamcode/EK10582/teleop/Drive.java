@@ -19,6 +19,16 @@ public class Drive extends EKLinear {
             robot.mecanumDrive.ly = driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
 
+            if(driverStation.getA1()){
+                if(robot.mecanumDrive.slowMode == 0.5)
+                    robot.mecanumDrive.slowMode = 1;
+                else
+                    robot.mecanumDrive.slowMode = 0.5;
+            }
+
+            //slides
+//            robot.slides.joystickInput = (driverStation.getRightTrigger()- driverStation.getLeftTrigger());
+
 
             robot.update();
 

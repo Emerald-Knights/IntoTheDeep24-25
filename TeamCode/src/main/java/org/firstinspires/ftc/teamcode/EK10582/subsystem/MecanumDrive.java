@@ -6,9 +6,11 @@ public class MecanumDrive extends Subsystem{
     public double ly,lx,rx;
     public double speed = SubsystemConstants.SPEED;
     public double ratio;
+    public double slowMode;
 
     @Override
     public void init(boolean auton){
+        slowMode = 0.5;
     }
 
     @Override
@@ -18,6 +20,8 @@ public class MecanumDrive extends Subsystem{
         double rf = ly - lx - rx;
         double lb = ly - lx + rx;
         double rb = ly + lx - rx;
+
+
 
 
         double max = Math.max(Math.max(Math.abs(lb), Math.abs(lf)), Math.max(Math.abs(rb), Math.abs(rf)));

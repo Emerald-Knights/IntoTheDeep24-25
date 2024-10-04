@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.EK10582.subsystem;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class Slides {
+public class Slides extends Subsystem{
     public static double p = 0.0022, i = 0, d = 0.0001, f = 0.08;
     public static double adjustableTarget = 0;
 
@@ -13,12 +13,13 @@ public class Slides {
     private double motorSpeed = 0;
     private double ff = 0;
 
+    @Override
     public void init(boolean auton) {
         currentState = SubsystemConstants.SlideStates.FREE;
 
-
     }
 
+    @Override
     public void update(boolean auton) {
 //        slidesPID.setPID(p, i, d);
         SubsystemConstants.MAX_FEEDFORWARD = f;
@@ -33,10 +34,12 @@ public class Slides {
         }
     }
 
+    @Override
     public void stop() {
 
     }
 
+    @Override
     public void printToTelemetry(Telemetry telemetry) {
         telemetry.addData("slidePower", motorSpeed);
         telemetry.addData("currentState", currentState);

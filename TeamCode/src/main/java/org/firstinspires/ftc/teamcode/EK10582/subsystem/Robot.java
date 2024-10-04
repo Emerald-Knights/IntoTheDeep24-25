@@ -31,8 +31,9 @@ public class Robot {
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
+    public Slides slides = new Slides();
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides);
     public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
@@ -63,6 +64,8 @@ public class Robot {
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftSlide = hardwareMap.get(DcMotorEx.class, "leftSlide");
+        leftSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+
         rightSlide = hardwareMap.get(DcMotorEx.class, "rightSlide");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");

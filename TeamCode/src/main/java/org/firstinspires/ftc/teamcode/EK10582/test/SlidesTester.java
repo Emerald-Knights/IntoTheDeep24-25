@@ -19,6 +19,7 @@ public class SlidesTester extends EKLinear {
             sm2.setPower(gamepad1.right_trigger*.5);
             sm1.setPower(-gamepad1.left_trigger*.5);
             sm2.setPower(-gamepad1.left_trigger*.5);
+
             telemetry.addData("motor speed: ", gamepad1.right_trigger);
             telemetry.update();
         }
