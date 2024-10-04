@@ -106,5 +106,7 @@
          AutonBase extends EKLinear
          AutonBase is the base of the code for Autonomous mode
          Has a method for waitForStart and intializes the telemetry and the code is the same as EKLinear
-   
+
+      9. ### Action
+         Action are the different actions for Autonomous mode by combining different actions like grabbing with the claw and moving it into one
 
