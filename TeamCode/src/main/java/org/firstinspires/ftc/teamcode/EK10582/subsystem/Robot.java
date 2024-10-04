@@ -37,9 +37,10 @@ public class Robot {
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
+    public AprilTags aprilTags = new AprilTags();
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, aprilTags);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, aprilTags);
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
 //    private ArrayList<Action> actions = new ArrayList<Action>();

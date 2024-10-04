@@ -10,14 +10,16 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-public class AprilTags {
+public class AprilTags extends Subsystem {
+
+    // TODO: set up roadrunner etc for relocalize method
+    // TODO: check if coordinates for apriltags work
 
     private AprilTagProcessor aprilTag;
     private VisionPortal visionPortal;
 
     public int targetAprilTag = SubsystemConstants.targetAprilTag;
     //TODO: make this changable by buttons or sm so you can change what april tag you're looking for
-    // TODO: set up roadrunner etc for relocalize method
 
     public boolean seeTag = false;
     public double tagX;
@@ -38,6 +40,7 @@ public class AprilTags {
 
     //boolean auton will be set to true or false depending if in auton
     //if in auton, then certain things will happen due to certain if statements specific to auton
+    //      nah what the sigma is this skibidi ahh explanation
     public void init(boolean auton) {
         if(!auton){
             return;
@@ -81,6 +84,7 @@ public class AprilTags {
         visionPortal.setProcessorEnabled(aprilTag, aprilTagsEnabled);
 
     }   // end method initAprilTag()
+    //          wow really?!?!?!?!?
 
 
     public void update(boolean auton){
@@ -108,7 +112,7 @@ public class AprilTags {
         if(!seeTag){
             tagX = -1;
             tagDistance = -1;
-            //if you don't see the stack return a negative number
+            //if you don't see the ____ return a negative number
         }
     }
     public void stop() {
@@ -126,18 +130,18 @@ public class AprilTags {
         telemetry.addData("Apriltag " + targetAprilTag + "'s yaw angle: ", yaw);
     }
 
-
 //    public Pose2d relocalize() {
-//        int targetX = 61;
+//        // values guessed from game manual diagram, change later lmao
 //
+//        double targetX = -24;
+//        double targetY = -36;
 //
-//        double targetY = 42;
 //        switch (targetAprilTag){
-//            case 2: targetY = 36; break;
-//            case 3: targetY = 30; break;
-//            case 4: targetY = -30; break;
-//            case 5: targetY = -36; break;
-//            case 6: targetY = -42; break;
+//            case 12: targetX = -36; targetY = 0; break;
+//            case 13: targetY = 36; break;
+//            case 14: targetX = 24; targetY = 36; break;
+//            case 15: targetX = 36; targetY = 0; break;
+//            case 16: targetX = 24; break;
 //        }
 //
 //        Pose2d pose = new Pose2d(targetX - tagDistance - 8, targetY + tagX, Math.toRadians(180));
