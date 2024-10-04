@@ -21,7 +21,7 @@ public class Robot {
     EKLinear linearOpMode;
 
     //declare hardware here
-    public DcMotorEx leftFront, leftBack, rightFront, rightBack, leftSlide, rightSlide;
+    public DcMotorEx leftFront, leftBack, rightFront, rightBack, clawSlide, hangSlide;
 
     public Servo tServo;
     public Servo clawServo;
@@ -33,6 +33,8 @@ public class Robot {
 
     //Declare subsystems here: Ex. mecanumDrive, collection, slides, sorting, etc.
     public MecanumDrive mecanumDrive = new MecanumDrive();
+    public Slides slides = new Slides();
+    public Hanging hanging = new Hanging();
 
     public List<Subsystem> subsystems = Arrays.asList(mecanumDrive);
     public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
@@ -63,7 +65,7 @@ public class Robot {
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        leftSlide = hardwareMap.get(DcMotorEx.class, "leftSlide");
+        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
         rightSlide = hardwareMap.get(DcMotorEx.class, "rightSlide");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");

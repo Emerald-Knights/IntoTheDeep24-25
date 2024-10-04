@@ -22,13 +22,17 @@ public class Drive extends EKLinear {
             robot.mecanumDrive.ly = driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
 
+            //slide for claw
+            robot.slides.joystickInput = driverStation.getSlidePower();
 
-
-
+            //claw
             if(robot.claw.currentState == SubsystemConstants.clawStates.CLOSED)
                 robot.claw.currentState = SubsystemConstants.clawStates.OPEN;
             else
                 robot.claw.currentState = SubsystemConstants.clawStates.CLOSED;
+
+            //hanging
+            robot.hanging.triggerInput = driverStation.toggleHang();
 
             robot.update();
             }

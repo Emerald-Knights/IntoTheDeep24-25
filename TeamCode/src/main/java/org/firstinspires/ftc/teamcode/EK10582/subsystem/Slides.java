@@ -5,7 +5,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Slides {
     public static double p = 0.0022, i = 0, d = 0.0001, f = 0.08;
     public static double adjustableTarget = 0;
-
     public double joystickInput; // joystick input
 //    PIDController slidesPID = new PIDController(0.002, 0, 0.0001);
 
@@ -15,8 +14,6 @@ public class Slides {
 
     public void init(boolean auton) {
         currentState = SubsystemConstants.SlideStates.FREE;
-
-
     }
 
     public void update(boolean auton) {
@@ -61,13 +58,12 @@ public class Slides {
         double ff = Math.pow(getSlidesPosition() / SubsystemConstants.MAX_SLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
         double total = input + ff;
         double power = (Math.abs(total) > 0.8) ? 0.8 * (total / Math.abs(total)) : total;
-        Robot.getInstance().leftSlide.setPower(power);
-        Robot.getInstance().rightSlide.setPower(power);
+        Robot.getInstance().clawSlide.setPower(power);
         motorSpeed = power;
         this.ff = ff;
     }
 
     public double getSlidesPosition() {
-        return Robot.getInstance().leftSlide.getCurrentPosition();
+        return Robot.getInstance().clawSlide.getCurrentPosition();
     }
 }
