@@ -94,3 +94,12 @@
          The point of the for each loop is so that the subsystems each get updated and then it keeps on going back in a loop until its told to stop
          It also sets the telemetry for the phone and telemetry is the information that we can see that the robot when checking the phone.
 
+      7. ### EKLinear
+         EKLinear extends LinearOpMode
+         EkLinears main goal is for setting up the instances (shortcut to refer to instance of Robot Class and telemtery for the robot during the match)
+         LinearOpMode makes code run sequentially for the robot
+         The waitForStart method sets the telemetry up for us to see on the phone
+         It sets the match timer, driver station(controllers), and the dashboard(allTelemetry)
+         While the match hasn't started and if the stop isn't requested the telemtery keeps updating
+   
+
