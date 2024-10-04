@@ -13,13 +13,14 @@ import java.util.List;
 public class AprilTags extends Subsystem {
 
     // TODO: set up roadrunner etc for relocalize method
-    // TODO: check if coordinates for apriltags work
+    // TODO: test calculated distance against actual apriltag distance, fit to line
+    // TODO: measure + test camera to robot center offset
+    // TODO: test yaw
 
     private AprilTagProcessor aprilTag;
     private VisionPortal visionPortal;
 
     public int targetAprilTag = SubsystemConstants.targetAprilTag;
-    //TODO: make this changable by buttons or sm so you can change what april tag you're looking for
 
     public boolean seeTag = false;
     public double tagX;
@@ -99,7 +100,9 @@ public class AprilTags extends Subsystem {
         for (AprilTagDetection detection : currentDetections) {
             if(detection.id == targetAprilTag){
                 seeTag = true;
-                tagX= (double)Math.round(detection.ftcPose.x * 100)/100;
+                tagX = (double)Math.round(detection.ftcPose.x * 100)/100;
+                // tagDist is dist between camera and apriltag, numbers are linear regression line
+                // found from comparing calculated to actual distance
                 tagDistance = ((double)Math.round(detection.ftcPose.y * 100)/100 ) / 1.102 - 0.4223;
                 yaw = (double)Math.round(detection.ftcPose.yaw * 100)/100;
 
@@ -132,21 +135,26 @@ public class AprilTags extends Subsystem {
 
 //    public Pose2d relocalize() {
 //        // values guessed from game manual diagram, change later lmao
+//        // bruh why is the coordinate system so goofy
+//        // pos x points forward/up, pos y points left (only for the ftc coords, not the apriltags)
+//        // apriltag coords are normal, pos x goes right, pos y goes forward/up
 //
-//        double targetX = -24;
-//        double targetY = -36;
+//        double targetX = 72;
+//        double targetY = -48;
 //
 //        switch (targetAprilTag){
-//            case 12: targetX = -36; targetY = 0; break;
-//            case 13: targetY = 36; break;
-//            case 14: targetX = 24; targetY = 36; break;
-//            case 15: targetX = 36; targetY = 0; break;
-//            case 16: targetX = 24; break;
+//            case 12: targetY = 0; break;
+//            case 13: targetX = -72; break;
+//            case 14: targetX = -72; targetY = 48; break;
+//            case 15: targetX = 0; targetY = 72; break;
+//            case 16: targetY = 48; break;
 //        }
 //
+//        // again pos x is up, pos y is left (just to screw w/ us ig)
+//        // number after tagDist is offset between camera and robot center
 //        Pose2d pose = new Pose2d(targetX - tagDistance - 8, targetY + tagX, Math.toRadians(180));
 //        if(!seeTag) pose = Robot.getInstance().roadRunner.getPoseEstimate();
 //        return pose;
-////        Robot.getInstance().roadRunner.setPoseEstimate(pose);
+//        Robot.getInstance().roadRunner.setPoseEstimate(pose);
 //    }
 }
