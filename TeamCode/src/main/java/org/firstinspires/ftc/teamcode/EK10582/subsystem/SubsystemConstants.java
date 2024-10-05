@@ -13,17 +13,12 @@ public class SubsystemConstants {
         }
     }
 
-    // april tag
-    public static int targetAprilTag = 11;
-    public static boolean aprilTagsEnabled = true;
-    public static int decimation = 3;
-
-
     // slides (ripped from centerstage)
     public static double SLIDES_TICKS_TO_INCHES = 0.010722;
     public static double MAX_SLIDE_HEIGHT = 1632;
     public static double MAX_FEEDFORWARD = 0.2;
     public static double slidesTolerance = 50;
+
     public enum SlideStates {
         FREE(0), BOTTOM(0), LOW(1115), MEDIUM(1300), ADJUSTABLE(-5);
 
@@ -33,4 +28,12 @@ public class SubsystemConstants {
             this.position = position;
         }
     }
+
+    //Hanging
+    public enum HangingStates {
+        GROUND, LOW_HANG, HIGH_HANG;
+
+    }
+    public static double lowHang;
+    public static double highHang;
 }

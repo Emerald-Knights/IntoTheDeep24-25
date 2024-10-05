@@ -77,4 +77,14 @@ public class DriverStation {
         }
     }
 
+    //----------------------second controller---------------------------------
+    public double getSlidePower(){
+        return filterJoystick(gamepad2.left_stick_y);
+    }
+
+    public double toggleHang(){
+        return filterJoystick(gamepad2.right_trigger);
+    }
+
+
 }

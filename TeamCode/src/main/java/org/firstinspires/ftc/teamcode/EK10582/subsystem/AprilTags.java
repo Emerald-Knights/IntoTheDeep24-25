@@ -68,6 +68,7 @@ public class AprilTags extends Subsystem {
     public void init (boolean auton) {
 
         aprilTagsEnabled = true;
+        decimation = 2;
 
         // Create the AprilTag processor.
         aprilTag = new AprilTagProcessor.Builder()
@@ -95,7 +96,7 @@ public class AprilTags extends Subsystem {
         // Decimation = 3 ..  Detect 2" Tag from 4  feet away at 30 Frames Per Second (default)
         // Decimation = 3 ..  Detect 5" Tag from 10 feet away at 30 Frames Per Second (default)
         // Note: Decimation can be changed on-the-fly to adapt during a match.
-        aprilTag.setDecimation(3);
+        aprilTag.setDecimation(decimation);
 
         // Create the vision portal by using a builder.
         VisionPortal.Builder builder = new VisionPortal.Builder();
@@ -168,4 +169,4 @@ public class AprilTags extends Subsystem {
         return 1.00298575 * dist + 1.074626865;
     }
 
-}   // end class
+}

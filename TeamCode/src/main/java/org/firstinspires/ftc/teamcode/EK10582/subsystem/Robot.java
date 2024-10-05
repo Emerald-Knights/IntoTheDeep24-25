@@ -25,7 +25,7 @@ public class Robot {
     EKLinear linearOpMode;
 
     //declare hardware here
-    public DcMotorEx leftFront, leftBack, rightFront, rightBack, leftSlide, rightSlide;
+    public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide;
 
     public Servo tServo1, tServo2;
     public Servo clawServo;
@@ -40,13 +40,11 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Claw claw = new Claw();
-
+    public Hanging hanging = new Hanging();
     public AprilTags aprilTags = new AprilTags();
 
-    public List<Subsystem> subsystems = Arrays.asList(aprilTags);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(aprilTags);
-
-
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, claw, aprilTags);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, claw, aprilTags);
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
 //    private ArrayList<Action> actions = new ArrayList<Action>();
@@ -58,18 +56,40 @@ public class Robot {
         this.hardwareMap = hardwareMap;
         this.linearOpMode = (EKLinear)linearOpMode;
 
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
+
+        tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        tServo2 = hardwareMap.get(Servo.class, "testServo2");
+
+        leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
+        hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
+
+        imu = hardwareMap.get(BHI260IMU.class, "imu");
+
+        BHI260IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP));
+        imu.initialize(parameters);
+        imu.resetYaw();
 
         camera = hardwareMap.get(WebcamName.class, "Webcam 1");
-
-
-
 
         for(Subsystem subsystem : subsystems) {
             //initialize the subsystems
             subsystem.init(false);
         }
-
 
         cycleTimer.reset();
     }

@@ -12,18 +12,48 @@ import org.firstinspires.ftc.teamcode.EK10582.subsystem.SubsystemConstants;
 public class Drive extends EKLinear {
 
     @Override
-    public void runOpMode() {
+    public void runOpMode(){
         waitForStart();
 
-        while (opModeIsActive()) {
+        while(opModeIsActive()) {
+
+            //drive
+            robot.mecanumDrive.lx = driverStation.getLeftStickX();
+            robot.mecanumDrive.ly = driverStation.getLeftStickY();
+            robot.mecanumDrive.rx = driverStation.getRightStickX();
+
+            //slide for claw
+            robot.slides.joystickInput = driverStation.getSlidePower();
+
+            if(driverStation.getA1()){
+                if(robot.mecanumDrive.slowMode == 0.5)
+                    robot.mecanumDrive.slowMode = 1;
+                else
+                    robot.mecanumDrive.slowMode = 0.5;
+            }
+
+
+            //claw
+            if(robot.claw.currentState == SubsystemConstants.clawStates.CLOSED)
+                robot.claw.currentState = SubsystemConstants.clawStates.OPEN;
+            else
+                robot.claw.currentState = SubsystemConstants.clawStates.CLOSED;
+
+            //hanging
+            robot.hanging.triggerInput = driverStation.toggleHang();
+
+            //apriltags
             if (driverStation.getDPADUP1()) {
                 Robot.getInstance().aprilTags.decimation++;
             }
             if (driverStation.getDPADDOWN1()){
                 Robot.getInstance().aprilTags.decimation--;
-        }
+            }
+
+
             robot.update();
         }
 
     }
 }
+
