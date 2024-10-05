@@ -86,5 +86,4 @@ public class DriverStation {
         return filterJoystick(gamepad2.right_trigger);
     }
 
-
 }

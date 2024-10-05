@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode.EK10582.subsystem;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.EK10582.subsystem.SubsystemConstants.HangingStates;
 
-public class Hanging extends Subsystem{
+public class Hanging extends Subsystem {
     public double hangingPower = 0;
     public HangingStates currentState = HangingStates.GROUND;
     public double triggerInput;
     private double motorSpeed = 0;
     private double ff = 0;
-
 
 
     @Override
@@ -19,11 +18,11 @@ public class Hanging extends Subsystem{
 
     @Override
     public void update(boolean auton) {
-        if(currentState == SubsystemConstants.HangingStates.GROUND && triggerInput > 0){
+        if (currentState == SubsystemConstants.HangingStates.GROUND && triggerInput > 0) {
             currentState = SubsystemConstants.HangingStates.LOW_HANG;
             sethSlideLength(SubsystemConstants.lowHang); //set it to the length of the low hang
         }
-        if(currentState == SubsystemConstants.HangingStates.LOW_HANG && triggerInput > 0){
+        if (currentState == SubsystemConstants.HangingStates.LOW_HANG && triggerInput > 0) {
             currentState = SubsystemConstants.HangingStates.HIGH_HANG;
             sethSlideLength(SubsystemConstants.highHang); //set it to the length of the high hang, maybe use an array?
         }
@@ -38,6 +37,7 @@ public class Hanging extends Subsystem{
     public void printToTelemetry(Telemetry telemetry) {
         telemetry.addData("Hanging Power", hangingPower);
     }
+
     public void sethSlideLength(double targetPosition) {
         double direction = (targetPosition - getHangSlidePosition()) / Math.abs(targetPosition - getHangSlidePosition());
         double error = targetPosition - getHangSlidePosition();
@@ -48,6 +48,7 @@ public class Hanging extends Subsystem{
             sethSlidesPower(speed);
         }
     }
+
     public void sethSlidesPower(double input) {
         double ff = Math.pow(getHangSlidePosition() / SubsystemConstants.MAX_SLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
         double total = input + ff;

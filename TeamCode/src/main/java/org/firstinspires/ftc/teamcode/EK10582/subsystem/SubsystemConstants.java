@@ -34,6 +34,7 @@ public class SubsystemConstants {
         GROUND, LOW_HANG, HIGH_HANG;
 
     }
+
     public static double lowHang;
     public static double highHang;
 }

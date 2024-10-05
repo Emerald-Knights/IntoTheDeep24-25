@@ -21,6 +21,9 @@ public class Drive extends EKLinear {
             robot.mecanumDrive.lx = driverStation.getLeftStickX();
             robot.mecanumDrive.ly = driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
+            
+            //slide for claw
+            robot.slides.joystickInput = driverStation.getSlidePower();
 
             //slide for claw
             robot.slides.joystickInput = driverStation.getSlidePower();
@@ -31,7 +34,7 @@ public class Drive extends EKLinear {
                 else
                     robot.mecanumDrive.slowMode = 0.5;
             }
-
+            
 
             //claw
             if(robot.claw.currentState == SubsystemConstants.clawStates.CLOSED)
