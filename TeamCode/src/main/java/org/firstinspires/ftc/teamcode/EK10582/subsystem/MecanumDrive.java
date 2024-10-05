@@ -6,9 +6,11 @@ public class MecanumDrive extends Subsystem{
     public double ly,lx,rx;
     public double speed = SubsystemConstants.SPEED;
     public double ratio;
+    public double slowMode;
 
     @Override
     public void init(boolean auton){
+        slowMode = 0.5;
     }
 
     @Override

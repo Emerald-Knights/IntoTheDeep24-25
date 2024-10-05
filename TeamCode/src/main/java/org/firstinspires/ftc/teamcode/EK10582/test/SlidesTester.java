@@ -14,8 +14,10 @@ public class SlidesTester extends EKLinear {
         waitForStart();
         DcMotor sm1 = hardwareMap.get(DcMotor.class, "sm1");
         while(opModeIsActive()) {
+
             sm1.setPower(gamepad1.right_trigger*.8);
             sm1.setPower(-gamepad1.left_trigger*.8);
+
             telemetry.addData("motor speed: ", gamepad1.right_trigger);
             telemetry.update();
         }

@@ -23,11 +23,10 @@ public class Robot {
     //declare hardware here
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, clawSlide, hangSlide;
 
-    public Servo tServo;
+    public Servo tServo1, tServo2;
     public Servo clawServo;
-    public Claw claw = new Claw();
-    //public Servo Wrist, Hand;
 
+    //public Servo Wrist, Hand;
     public BHI260IMU imu;
 
 
@@ -35,9 +34,10 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
+    public Claw claw = new Claw();
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive,slides);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive,slides);
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
 //    private ArrayList<Action> actions = new ArrayList<Action>();
@@ -49,12 +49,15 @@ public class Robot {
         this.hardwareMap = hardwareMap;
         this.linearOpMode = (EKLinear)linearOpMode;
 
-       /* leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-        //tServo = hardwareMap.get(Servo.class, "test Servo");
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
+
+        tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        tServo2 = hardwareMap.get(Servo.class, "testServo2");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -65,14 +68,18 @@ public class Robot {
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
+
         clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
-        rightSlide = hardwareMap.get(DcMotorEx.class, "rightSlide");
+
+
+
+        hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");
 
         BHI260IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP));
         imu.initialize(parameters);
-        imu.resetYaw();*/
+        imu.resetYaw();
 
 
         for(Subsystem subsystem : subsystems) {
