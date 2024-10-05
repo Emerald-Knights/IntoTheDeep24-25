@@ -49,6 +49,20 @@ public class DriverStation {
         return out;
     }
 
+    boolean lateDPADUP1 = false;
+    public boolean getDPADUP1(){
+        boolean out;
+        out = gamepad1.dpad_up && !lateDPADUP1;
+        lateDPADUP1 = gamepad1.dpad_up;
+        return out;
+    }
+    boolean lateDPADDOWN1 = false;
+    public boolean getDPADDOWN1() {
+        boolean out;
+        out = gamepad1.dpad_down && !lateDPADDOWN1;
+        lateDPADDOWN1 = gamepad1.dpad_down;
+        return out;
+    }
 
 
 
