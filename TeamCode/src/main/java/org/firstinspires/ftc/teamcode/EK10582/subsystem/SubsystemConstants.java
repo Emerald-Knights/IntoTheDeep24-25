@@ -13,7 +13,7 @@ public class SubsystemConstants {
         }
     }
 
-    // april tags (ripped from centerstage)
+    // april tag
     public static int targetAprilTag = 11;
     public static boolean aprilTagsEnabled = true;
     public static int decimation = 3;
