@@ -31,12 +31,9 @@ public class SubsystemConstants {
 
     //Hanging
     public enum HangingStates {
-        GROUND(0), LOWHANG(0.53), HIGHHANG(0.85);
+        GROUND, LOW_HANG, HIGH_HANG;
 
-        public final double hposition;
-
-        HangingStates(double hposition) {
-            this.hposition = hposition;
-        }
     }
+    public static double lowHang;
+    public static double highHang;
 }

@@ -20,9 +20,12 @@ public class Hanging extends Subsystem{
     @Override
     public void update(boolean auton) {
         if(currentState == SubsystemConstants.HangingStates.GROUND && triggerInput > 0){
-            currentState = SubsystemConstants.HangingStates.LOWHANG;
-            sethangSlideLength();
-
+            currentState = SubsystemConstants.HangingStates.LOW_HANG;
+            sethSlideLength(SubsystemConstants.lowHang); //set it to the length of the low hang
+        }
+        if(currentState == SubsystemConstants.HangingStates.LOW_HANG && triggerInput > 0){
+            currentState = SubsystemConstants.HangingStates.HIGH_HANG;
+            sethSlideLength(SubsystemConstants.highHang); //set it to the length of the high hang, maybe use an array?
         }
     }
 
@@ -35,7 +38,7 @@ public class Hanging extends Subsystem{
     public void printToTelemetry(Telemetry telemetry) {
         telemetry.addData("Hanging Power", hangingPower);
     }
-    public void sethangSlideLength(double targetPosition) {
+    public void sethSlideLength(double targetPosition) {
         double direction = (targetPosition - getHangSlidePosition()) / Math.abs(targetPosition - getHangSlidePosition());
         double error = targetPosition - getHangSlidePosition();
         if (Math.abs(error) >= SubsystemConstants.slidesTolerance) {

@@ -49,7 +49,7 @@ public class Robot {
         this.hardwareMap = hardwareMap;
         this.linearOpMode = (EKLinear)linearOpMode;
 
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+       /* leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
@@ -72,7 +72,7 @@ public class Robot {
 
         BHI260IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP));
         imu.initialize(parameters);
-        imu.resetYaw();
+        imu.resetYaw();*/
 
 
         for(Subsystem subsystem : subsystems) {
