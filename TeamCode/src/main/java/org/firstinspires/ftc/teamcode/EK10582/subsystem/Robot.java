@@ -4,6 +4,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -31,6 +32,7 @@ public class Robot {
 
     public Servo tServo1, tServo2;
     public Servo clawServo;
+    public DistanceSensor autoGrabSensor;
 
     //public Servo Wrist, Hand;
     public BHI260IMU imu;
@@ -69,6 +71,8 @@ public class Robot {
 
         tServo1 = hardwareMap.get(Servo.class, "testServo1");
         tServo2 = hardwareMap.get(Servo.class, "testServo2");
+
+        autoGrabSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
