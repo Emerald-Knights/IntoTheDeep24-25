@@ -160,6 +160,7 @@ public class AprilTags extends Subsystem {
 
     }   // end method telemetryAprilTag()
 
+    // Calibration data via physically tested values
     public double filterYDist(double dist){
         return 0.90689 * dist + 0.751176;
     }
