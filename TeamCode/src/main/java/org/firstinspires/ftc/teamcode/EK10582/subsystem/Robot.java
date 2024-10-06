@@ -26,7 +26,7 @@ public class Robot {
 
     //declare hardware here
 
-    public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide;
+    public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, armSlide1, armSlide2;
 
 
     public Servo tServo1, tServo2;
@@ -42,12 +42,17 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
-    public Claw claw = new Claw();
-    public AprilTags aprilTags = new AprilTags();
+   // public Claw claw = new Claw();
+    //public AprilTags aprilTags = new AprilTags();
+//    public Elbow elbow = new Elbow();
 
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, claw, aprilTags);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, claw, aprilTags);
+    public List<Subsystem> getSubsystems() {
+        return subsystems;
+    }
+
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
@@ -65,10 +70,10 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-        clawServo = hardwareMap.get(Servo.class, "clawServo");
+        //clawServo = hardwareMap.get(Servo.class, "clawServo");
 
-        tServo1 = hardwareMap.get(Servo.class, "testServo1");
-        tServo2 = hardwareMap.get(Servo.class, "testServo2");
+        //tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        //tServo2 = hardwareMap.get(Servo.class, "testServo2");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -80,11 +85,12 @@ public class Robot {
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
+//        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
 
+        //hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
 
-
-        hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
+//        armSlide1 = hardwareMap.get(DcMotorEx.class, "armSlide1");
+//        armSlide2 = hardwareMap.get(DcMotorEx.class, "armSlide2");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");
 
@@ -92,7 +98,7 @@ public class Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
-        camera = hardwareMap.get(WebcamName.class, "Webcam 1");
+        //camera = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         for(Subsystem subsystem : subsystems) {
             //initialize the subsystems

@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.EK10582.teleop;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.EK10582.subsystem.Claw;
+//import org.firstinspires.ftc.teamcode.EK10582.subsystem.Claw;
 
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
 import org.firstinspires.ftc.teamcode.EK10582.subsystem.Robot;
@@ -37,7 +37,7 @@ public class Drive extends EKLinear {
             
 
             //claw
-            if(robot.claw.currentState == SubsystemConstants.clawStates.CLOSED)
+            /*if(robot.claw.currentState == SubsystemConstants.clawStates.CLOSED)
                 robot.claw.currentState = SubsystemConstants.clawStates.OPEN;
             else
                 robot.claw.currentState = SubsystemConstants.clawStates.CLOSED;
@@ -51,7 +51,7 @@ public class Drive extends EKLinear {
             }
             if (driverStation.getDPADDOWN1()){
                 Robot.getInstance().aprilTags.decimation--;
-            }
+            }*/
 
 
             robot.update();

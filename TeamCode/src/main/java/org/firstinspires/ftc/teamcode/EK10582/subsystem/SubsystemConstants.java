@@ -29,6 +29,14 @@ public class SubsystemConstants {
         }
     }
 
+    public enum ArmStates {
+        FREE(0), GROUND(-1000), UP(2000);
+
+        public final int position;
+
+        ArmStates(int position) { this.position = position; }
+    }
+
     //Hanging
     public enum HangingStates {
         GROUND, LOW_HANG, HIGH_HANG;

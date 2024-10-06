@@ -40,8 +40,8 @@ public class ServoTester extends EKLinear {
                 targetPos2 = 0;
             }
 
-            Robot.getInstance().tServo1.setPosition(targetPos1);
-            Robot.getInstance().tServo2.setPosition(targetPos2);
+            //Robot.getInstance().tServo1.setPosition(targetPos1);
+            //Robot.getInstance().tServo2.setPosition(targetPos2);
 
             telemetry.addData("Servo Position 1: ", targetPos1);
             telemetry.addData("Servo Position 2: ", targetPos2);
