@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.EK10582.subsystem;
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -26,7 +27,7 @@ public class Robot {
 
     //declare hardware here
 
-    public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, armSlide1, armSlide2;
+    public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, arm1, arm2;
 
 
     public Servo tServo1, tServo2;
@@ -70,9 +71,12 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
+//        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
+//        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+
         //clawServo = hardwareMap.get(Servo.class, "clawServo");
 
-        //tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        tServo1 = hardwareMap.get(Servo.class, "testServo1");
         //tServo2 = hardwareMap.get(Servo.class, "testServo2");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -80,12 +84,15 @@ public class Robot {
         rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
+//        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-//        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
+        clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
 
         //hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
 

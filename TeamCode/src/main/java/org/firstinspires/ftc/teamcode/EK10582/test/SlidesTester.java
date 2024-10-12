@@ -12,11 +12,12 @@ public class SlidesTester extends EKLinear {
     @Override
     public void runOpMode() {
         waitForStart();
-        DcMotor sm1 = hardwareMap.get(DcMotor.class, "sm1");
+        DcMotor sm1 = hardwareMap.get(DcMotor.class, "clawSlide");
 
         DcMotor arm1 = hardwareMap.get(DcMotor.class, "arm1");
         DcMotor arm2 = hardwareMap.get(DcMotor.class, "arm2");
 
+        sm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -24,8 +25,8 @@ public class SlidesTester extends EKLinear {
 
             sm1.setPower(gamepad2.left_stick_y * .8);
 
-            arm1.setPower((gamepad2.right_trigger - gamepad2.left_trigger) * .8);
-            arm2.setPower((gamepad2.left_trigger - gamepad2.right_trigger) * .8);
+            arm1.setPower((gamepad2.right_trigger - gamepad2.left_trigger) * .3);
+            arm2.setPower(-1*(gamepad2.left_trigger - gamepad2.right_trigger) * .3);
 
             telemetry.addData("motor speed: ", gamepad2.left_stick_y);
             telemetry.addData("arm speed: ", gamepad2.right_trigger - gamepad2.left_trigger);

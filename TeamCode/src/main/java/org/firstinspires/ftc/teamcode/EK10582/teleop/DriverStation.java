@@ -35,10 +35,10 @@ public class DriverStation {
 
 
     public double getRightTrigger(){
-        return filterJoystick(gamepad1.right_trigger);
+        return filterJoystick(gamepad2.right_trigger);
     }
     public double getLeftTrigger(){
-        return filterJoystick(gamepad1.left_trigger);
+        return filterJoystick(gamepad2.left_trigger);
     }
 
     boolean lateA1 = false;
