@@ -35,10 +35,10 @@ public class DriverStation {
 
 
     public double getRightTrigger(){
-        return filterJoystick(gamepad2.right_trigger);
+        return filterJoystick(gamepad1.right_trigger);
     }
     public double getLeftTrigger(){
-        return filterJoystick(gamepad2.left_trigger);
+        return filterJoystick(gamepad1.left_trigger);
     }
 
     boolean lateA1 = false;
@@ -80,10 +80,34 @@ public class DriverStation {
     //----------------------second controller---------------------------------
     public double getSlidePower(){
         return filterJoystick(gamepad2.left_stick_y);
-    }
+    } // motor
 
-    public double toggleHang(){
-        return filterJoystick(gamepad2.right_trigger);
-    }
+    public double getArmSpeed() { return filterJoystick(gamepad2.right_stick_y); } // motor, limit max speed
+
+    public double getWristPosition() { return filterJoystick(gamepad2.right_trigger - gamepad2.left_trigger); } // servo
+
+    public int openClaw() {
+        boolean aButton = gamepad2.a;
+        boolean bButton = gamepad2.b;
+        if (aButton) {
+            if (bButton) {
+                return 0;
+            }
+            else {
+                return 1;
+            }
+        } else {
+            if (bButton) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
+        }
+    } // servo
+
+//    public double toggleHang(){
+//        return filterJoystick(gamepad2.right_trigger);
+//    }
 
 }
