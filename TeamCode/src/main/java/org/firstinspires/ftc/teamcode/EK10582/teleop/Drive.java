@@ -36,7 +36,7 @@ public class Drive extends EKLinear {
 
 
 //
-//            //claw
+//            //claw //i think i got the clawslide + servos confused
 //            if(robot.clawSlide.currentState == SubsystemConstants.clawStates.CLOSED)
 //                robot.clawSlide.currentState = SubsystemConstants.clawStates.OPEN;
 //            else

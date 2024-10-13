@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode.EK10582.subsystem;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
+
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -12,6 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.firstinspires.ftc.teamcode.EK10582.teleop.DriverStation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
 import java.util.Arrays;
@@ -48,6 +53,7 @@ public class Robot {
 //    public Elbow elbow = new Elbow();
 
 
+
     public List<Subsystem> getSubsystems() {
         return subsystems;
     }
@@ -76,8 +82,9 @@ public class Robot {
 
         //clawServo = hardwareMap.get(Servo.class, "clawServo");
 
-        tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        //tServo1 = hardwareMap.get(Servo.class, "testServo1");
         //tServo2 = hardwareMap.get(Servo.class, "testServo2");
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
