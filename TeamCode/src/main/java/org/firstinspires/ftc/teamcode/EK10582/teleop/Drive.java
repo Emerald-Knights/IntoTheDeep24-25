@@ -23,17 +23,21 @@ public class Drive extends EKLinear {
             robot.mecanumDrive.ly = -1 * driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
 
-            //slide for claw2
-            robot.slides.joystickInput = driverStation.getSlidePower();
+            //arm motors
+            double armJoystickInput = driverStation.getArmSpeed();
 
-            //arm motors - make this better later
-            if (gamepad2.left_trigger > 0.02 || gamepad2.left_trigger < -0.02 || gamepad2.right_trigger > 0.02 || gamepad2.right_trigger < -0.02){
-                robot.arm1.setPower((gamepad2.right_trigger - gamepad2.left_trigger) * .8);
-                robot.arm2.setPower(-1*(gamepad2.left_trigger - gamepad2.right_trigger) * .8);
+            if (armJoystickInput > 0.02 || armJoystickInput < -0.02){
+                robot.arm1.setPower(armJoystickInput * .8);
+                robot.arm2.setPower(-1 * armJoystickInput * .8);
             }
 
+            // slide motor
 
+            double slideJoystickInput = driverStation.getSlidePower();
 
+            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02){
+                robot.clawSlide.setPower(slideJoystickInput * .8);
+            }
 
 //
 //            //claw //i think i got the clawslide + servos confused

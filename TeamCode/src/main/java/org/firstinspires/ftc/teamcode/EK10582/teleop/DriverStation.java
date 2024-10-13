@@ -79,9 +79,7 @@ public class DriverStation {
     }
 
     //----------------------second controller---------------------------------
-    public double getSlidePower(){
-        return filterJoystick(gamepad2.left_stick_y);
-    } // motor
+    public double getSlidePower(){return filterJoystick(gamepad2.left_stick_y);} // motor
 
     public double getArmSpeed() { return filterJoystick(gamepad2.right_stick_y); } // motor, limit max speed
 
