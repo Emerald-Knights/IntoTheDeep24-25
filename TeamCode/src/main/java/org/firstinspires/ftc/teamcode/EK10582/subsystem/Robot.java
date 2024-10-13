@@ -16,6 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.firstinspires.ftc.teamcode.EK10582.teleop.Drive;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.DriverStation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
@@ -48,7 +49,9 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
-   // public Claw claw = new Claw();
+    public Drive drive = new Drive();
+    DriverStation driverStation = new DriverStation(gamepad1, gamepad2);
+    public Claw claw = new Claw(driverStation);
     //public AprilTags aprilTags = new AprilTags();
 //    public Elbow elbow = new Elbow();
 
@@ -58,14 +61,15 @@ public class Robot {
         return subsystems;
     }
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
 //    private ArrayList<Action> actions = new ArrayList<Action>();
 
     public ElapsedTime cycleTimer = new ElapsedTime();
+
 
     //sets values to declared but not instantiated values
     public void init(HardwareMap hardwareMap, LinearOpMode linearOpMode) {
@@ -82,7 +86,7 @@ public class Robot {
 
         //clawServo = hardwareMap.get(Servo.class, "clawServo");
 
-        //tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        tServo1 = hardwareMap.get(Servo.class, "testServo1");
         //tServo2 = hardwareMap.get(Servo.class, "testServo2");
         clawServo = hardwareMap.get(Servo.class, "clawServo");
 

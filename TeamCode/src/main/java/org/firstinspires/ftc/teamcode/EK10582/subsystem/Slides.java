@@ -39,11 +39,11 @@ public class Slides extends Subsystem{
 
     @Override
     public void printToTelemetry(Telemetry telemetry) {
-        telemetry.addData("slidePower", motorSpeed);
-        telemetry.addData("currentState", currentState);
-        telemetry.addData("finalPosition", adjustableTarget);
-        telemetry.addData("ff", ff);
-        telemetry.addData("currentPosition", getSlidesPosition());
+//        telemetry.addData("slidePower", motorSpeed);
+//        telemetry.addData("currentState", currentState);
+//        telemetry.addData("finalPosition", adjustableTarget);
+//        telemetry.addData("ff", ff);
+//        telemetry.addData("currentPosition", getSlidesPosition());
     }
 
     public void setSlidesLength(double targetPosition) {

@@ -41,10 +41,10 @@ public class MecanumDrive extends Subsystem{
 
     @Override
     public void printToTelemetry(Telemetry telemetry){
-        telemetry.addData("ratio:", ratio);
-        telemetry.addData("ly",ly);
-        telemetry.addData("lx",lx);
-        telemetry.addData("rx", rx);
+//        telemetry.addData("ratio:", ratio);
+//        telemetry.addData("ly",ly);
+//        telemetry.addData("lx",lx);
+//        telemetry.addData("rx", rx);
     }
 
 }

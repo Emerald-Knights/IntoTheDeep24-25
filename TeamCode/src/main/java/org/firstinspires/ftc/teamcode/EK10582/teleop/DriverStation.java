@@ -17,6 +17,7 @@ public class DriverStation {
     public DriverStation(Gamepad gamepad1, Gamepad gamepad2) {
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
+//        
     }
 
     //-----------------------first controller------------------------------
@@ -86,25 +87,9 @@ public class DriverStation {
 
     public double getWristPosition() { return filterJoystick(gamepad2.right_trigger - gamepad2.left_trigger); } // servo
 
-    public int openClaw() {
-        boolean aButton = gamepad2.a;
-        boolean bButton = gamepad2.b;
-        if (aButton) {
-            if (bButton) {
-                return 0;
-            }
-            else {
-                return 1;
-            }
-        } else {
-            if (bButton) {
-                return -1;
-            }
-            else {
-                return 0;
-            }
-        }
-    } // servo
+    public boolean aButton = gamepad2.a;
+    public boolean bButton = gamepad2.b;
+     // servo
 
 //    public double toggleHang(){
 //        return filterJoystick(gamepad2.right_trigger);
