@@ -43,6 +43,9 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
+    public Elbow arm = new Elbow();
+//    public Elbow arm1 = new Elbow();
+//    public Elbow arm2 = new Elbow();
    // public Claw claw = new Claw();
     //public AprilTags aprilTags = new AprilTags();
 //    public Elbow elbow = new Elbow();
@@ -52,8 +55,8 @@ public class Robot {
         return subsystems;
     }
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, arm);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, arm);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
@@ -71,8 +74,8 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-//        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
-//        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
+        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
 
         //clawServo = hardwareMap.get(Servo.class, "clawServo");
 
@@ -84,8 +87,8 @@ public class Robot {
         rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-//        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -96,8 +99,6 @@ public class Robot {
 
         //hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
 
-//        armSlide1 = hardwareMap.get(DcMotorEx.class, "armSlide1");
-//        armSlide2 = hardwareMap.get(DcMotorEx.class, "armSlide2");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");
 
