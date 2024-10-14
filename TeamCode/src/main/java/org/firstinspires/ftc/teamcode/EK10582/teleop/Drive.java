@@ -17,29 +17,33 @@ public class Drive extends EKLinear {
         waitForStart();
 
         while (opModeIsActive()) {
-
             //drive
-            robot.mecanumDrive.lx = -1 * driverStation.getLeftStickX();
-            robot.mecanumDrive.ly = -1 * driverStation.getLeftStickY();
+            robot.mecanumDrive.lx = -driverStation.getLeftStickX();
+            robot.mecanumDrive.ly = -driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
 
-            //arm motors
+            //arm motors: gamepad2 right stick y
             double armJoystickInput = driverStation.getArmSpeed();
 
-            if (armJoystickInput > 0.02 || armJoystickInput < -0.02){
+            if (armJoystickInput > 0.02 || armJoystickInput < -0.02) {
                 robot.arm1.setPower(armJoystickInput * .8);
-                robot.arm2.setPower(-1 * armJoystickInput * .8);
+                robot.arm2.setPower(-armJoystickInput * .8);
+            } else{
+                robot.arm1.setPower(0);
+                robot.arm2.setPower(0);
             }
 
-            // slide motor
-
+            //slide motor: left stick y
             double slideJoystickInput = driverStation.getSlidePower();
 
             if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02){
                 robot.clawSlide.setPower(slideJoystickInput * .8);
+            } else{
+                robot.clawSlide.setPower(0);
             }
 
-//
+            robot.claw.moveClaw = driverStation.getA2();
+
 //            //claw //i think i got the clawslide + servos confused
 //            if(robot.clawSlide.currentState == SubsystemConstants.clawStates.CLOSED)
 //                robot.clawSlide.currentState = SubsystemConstants.clawStates.OPEN;
@@ -57,8 +61,7 @@ public class Drive extends EKLinear {
                 Robot.getInstance().aprilTags.decimation--;
             }*/
 
-
-                robot.update();
+            robot.update();
         }
 
     }

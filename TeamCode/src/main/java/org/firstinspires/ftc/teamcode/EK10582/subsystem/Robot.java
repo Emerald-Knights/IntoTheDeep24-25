@@ -50,10 +50,8 @@ public class Robot {
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
     public Drive drive = new Drive();
+    public Claw claw = new Claw();
     DriverStation driverStation = new DriverStation(gamepad1, gamepad2);
-    public Claw claw = new Claw(driverStation);
-    //public AprilTags aprilTags = new AprilTags();
-//    public Elbow elbow = new Elbow();
 
 
 
@@ -61,8 +59,8 @@ public class Robot {
         return subsystems;
     }
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, claw);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, claw);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
@@ -81,10 +79,10 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-//        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
-//        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
+        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
 
-        //clawServo = hardwareMap.get(Servo.class, "clawServo");
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
 
         tServo1 = hardwareMap.get(Servo.class, "testServo1");
         //tServo2 = hardwareMap.get(Servo.class, "testServo2");
@@ -95,8 +93,8 @@ public class Robot {
         rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-//        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
