@@ -16,6 +16,7 @@ public class Drive extends EKLinear {
     public void runOpMode() {
         waitForStart();
 
+
         while (opModeIsActive()) {
             //drive
             robot.mecanumDrive.lx = -driverStation.getLeftStickX();
@@ -43,6 +44,7 @@ public class Drive extends EKLinear {
             }
 
             robot.claw.moveClaw = driverStation.getA2();
+            robot.claw.moveWrist = driverStation.getB2();
 
 //            //claw //i think i got the clawslide + servos confused
 //            if(robot.clawSlide.currentState == SubsystemConstants.clawStates.CLOSED)

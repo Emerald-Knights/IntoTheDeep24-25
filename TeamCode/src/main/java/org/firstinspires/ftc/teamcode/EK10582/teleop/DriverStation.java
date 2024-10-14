@@ -92,6 +92,14 @@ public class DriverStation {
         return out;
     }
 
+    boolean lateB2 = false;
+    public boolean getB2() {
+        boolean out;
+        out = gamepad2.b && !lateB2;
+        lateB2 = gamepad2.b;
+        return out;
+    }
+
 //    public double toggleHang(){
 //        return filterJoystick(gamepad2.right_trigger);
 //    }

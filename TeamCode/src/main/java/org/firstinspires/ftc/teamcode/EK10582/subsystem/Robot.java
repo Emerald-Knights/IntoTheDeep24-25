@@ -36,7 +36,7 @@ public class Robot {
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, arm1, arm2;
 
 
-    public Servo tServo1, tServo2;
+    public Servo wristServo;
     public Servo clawServo;
 
     //public Servo Wrist, Hand;
@@ -49,15 +49,8 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
-    public Drive drive = new Drive();
     public Claw claw = new Claw();
-    DriverStation driverStation = new DriverStation(gamepad1, gamepad2);
 
-
-
-    public List<Subsystem> getSubsystems() {
-        return subsystems;
-    }
 
     public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, claw);
     public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, claw);
@@ -81,12 +74,12 @@ public class Robot {
 
         arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
         arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         clawServo = hardwareMap.get(Servo.class, "clawServo");
 
-        tServo1 = hardwareMap.get(Servo.class, "testServo1");
+        wristServo = hardwareMap.get(Servo.class, "wristServo");
         //tServo2 = hardwareMap.get(Servo.class, "testServo2");
-        clawServo = hardwareMap.get(Servo.class, "clawServo");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
