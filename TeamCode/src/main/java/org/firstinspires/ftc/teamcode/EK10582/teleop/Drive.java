@@ -16,7 +16,6 @@ public class Drive extends EKLinear {
     public void runOpMode() {
         waitForStart();
 
-
         while (opModeIsActive()) {
             //drive
             robot.mecanumDrive.lx = -driverStation.getLeftStickX();
@@ -27,8 +26,9 @@ public class Drive extends EKLinear {
             double armJoystickInput = driverStation.getArmSpeed();
 
             if (armJoystickInput > 0.02 || armJoystickInput < -0.02) {
-                robot.arm1.setPower(armJoystickInput * .8);
-                robot.arm2.setPower(-armJoystickInput * .8);
+                //multiplier to make it slower
+                robot.arm1.setPower(armJoystickInput * .2);
+                robot.arm2.setPower(-armJoystickInput * .2);
             } else{
                 robot.arm1.setPower(0);
                 robot.arm2.setPower(0);
@@ -38,30 +38,14 @@ public class Drive extends EKLinear {
             double slideJoystickInput = driverStation.getSlidePower();
 
             if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02){
-                robot.clawSlide.setPower(slideJoystickInput * .8);
+                robot.clawSlide.setPower(slideJoystickInput);
             } else{
                 robot.clawSlide.setPower(0);
             }
 
+            //claw
             robot.claw.moveClaw = driverStation.getA2();
             robot.claw.moveWrist = driverStation.getB2();
-
-//            //claw //i think i got the clawslide + servos confused
-//            if(robot.clawSlide.currentState == SubsystemConstants.clawStates.CLOSED)
-//                robot.clawSlide.currentState = SubsystemConstants.clawStates.OPEN;
-//            else
-//                robot.clawSlide.currentState = SubsystemConstants.clawStates.CLOSED;
-/*
-            //hanging
-            robot.hanging.triggerInput = driverStation.toggleHang();
-
-            //apriltags
-            if (driverStation.getDPADUP1()) {
-                Robot.getInstance().aprilTags.decimation++;
-            }
-            if (driverStation.getDPADDOWN1()){
-                Robot.getInstance().aprilTags.decimation--;
-            }*/
 
             robot.update();
         }

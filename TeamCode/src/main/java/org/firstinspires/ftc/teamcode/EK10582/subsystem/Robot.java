@@ -34,8 +34,6 @@ public class Robot {
     //declare hardware here
 
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, arm1, arm2;
-
-
     public Servo wristServo;
     public Servo clawServo;
 
