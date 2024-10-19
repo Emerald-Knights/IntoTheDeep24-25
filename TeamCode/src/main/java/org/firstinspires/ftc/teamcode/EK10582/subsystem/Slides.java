@@ -19,14 +19,12 @@ public class Slides extends Subsystem{
 
     @Override
     public void update(boolean auton) {
-//        slidesPID.setPID(p, i, d);
+
         SubsystemConstants.MAX_FEEDFORWARD = f;
 
         if(currentState == SubsystemConstants.SlideStates.FREE || joystickInput > 0.05) {
             currentState = SubsystemConstants.SlideStates.FREE;
             setSlidesPower(joystickInput);
-        } else if(currentState == SubsystemConstants.SlideStates.ADJUSTABLE) {
-            setSlidesLength(adjustableTarget);
         } else {
             setSlidesLength(currentState.position);
         }
@@ -47,10 +45,8 @@ public class Slides extends Subsystem{
     }
 
     public void setSlidesLength(double targetPosition) {
-        double direction = (targetPosition - getSlidesPosition()) / Math.abs(targetPosition - getSlidesPosition());
         double error = targetPosition - getSlidesPosition();
         if (Math.abs(error) >= SubsystemConstants.slidesTolerance) {
-//            double speed = slidesPID.update(error);
             double speed = error;
             speed = (Math.abs(speed) > 0.8) ? 0.8 * (speed / Math.abs(speed)) : speed;
             setSlidesPower(speed);

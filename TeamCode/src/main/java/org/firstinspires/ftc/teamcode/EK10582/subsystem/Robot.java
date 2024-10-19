@@ -16,10 +16,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.firstinspires.ftc.teamcode.EK10582.auton.action.Action;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.Drive;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.DriverStation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class Robot {
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
-//    private ArrayList<Action> actions = new ArrayList<Action>();
+    private ArrayList<Action> actions = new ArrayList<Action>();
 
     public ElapsedTime cycleTimer = new ElapsedTime();
 
@@ -122,12 +124,28 @@ public class Robot {
         return robot;
     }
 
+    public void addAction(Action action) {
+        action.start();
+        actions.add(action);
+    }
+
     public void update() {
         //Update every single subsystem in the subsystems array initialized earlier
         for(Subsystem subsystem : subsystems) {
             subsystem.update(linearOpMode.isAuton);
             if(linearOpMode.isStopRequested()){
                 return;
+            }
+        }
+
+        for(int i = 0; i < actions.size(); i++) {
+            actions.get(i).update();
+
+            //if an action is finished, end said action and remove it from the list of things to do
+            if(actions.get(i).isComplete) {
+                actions.get(i).end();
+                actions.remove(i);
+                i--;
             }
         }
 

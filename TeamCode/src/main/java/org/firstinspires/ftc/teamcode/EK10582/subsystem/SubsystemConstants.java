@@ -30,7 +30,7 @@ public class SubsystemConstants {
     public static double slidesTolerance = 50;
 
     public enum SlideStates {
-        FREE(0), BOTTOM(0), LOW(1115), MEDIUM(1300), ADJUSTABLE(-5);
+        FREE(0), BOTTOM(0), LOW(1115), MEDIUM(1300);
 
         public final double position;
 
