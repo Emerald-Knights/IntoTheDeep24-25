@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -20,6 +21,7 @@ import org.firstinspires.ftc.teamcode.EK10582.auton.action.Action;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.Drive;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.DriverStation;
 import org.openftc.easyopencv.OpenCvWebcam;
+import org.openftc.easyopencv.OpenCvCameraFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,8 @@ public class Robot {
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, arm1, arm2;
     public Servo wristServo;
     public Servo clawServo;
+
+    public DistanceSensor autoGrabSensor;
 
     //public Servo Wrist, Hand;
     public BHI260IMU imu;
@@ -96,10 +100,11 @@ public class Robot {
 
         clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
 
+        //TODO: Autograb
+//        autoGrabSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
+
         //hangSlide = hardwareMap.get(DcMotorEx.class, "hangSlide");
 
-//        armSlide1 = hardwareMap.get(DcMotorEx.class, "armSlide1");
-//        armSlide2 = hardwareMap.get(DcMotorEx.class, "armSlide2");
 
         imu = hardwareMap.get(BHI260IMU.class, "imu");
 
@@ -107,7 +112,12 @@ public class Robot {
         imu.initialize(parameters);
         imu.resetYaw();
 
+        //TODO: Apriltags Camera
         //camera = hardwareMap.get(WebcamName.class, "Webcam 1");
+
+        //OpenCV Camera
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 
         for(Subsystem subsystem : subsystems) {
             //initialize the subsystems

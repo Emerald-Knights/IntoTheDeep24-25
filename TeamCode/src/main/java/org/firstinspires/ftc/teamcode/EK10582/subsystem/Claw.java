@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.EK10582.subsystem;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.EK10582.subsystem.SubsystemConstants.clawStates;
 import org.firstinspires.ftc.teamcode.EK10582.subsystem.SubsystemConstants.wristStates;
 
@@ -8,6 +9,8 @@ public class Claw extends Subsystem{
     wristStates currentWristState;
     public boolean moveClaw;
     public boolean moveWrist;
+
+    boolean autoGrab;
 
     public void init(boolean isAuton){
         currentState = clawStates.CLOSED;
@@ -31,6 +34,13 @@ public class Claw extends Subsystem{
                 currentWristState = wristStates.DOWN;
             }
         }
+
+        //TODO: autograb
+//        if (autoGrab){
+//            if (Robot.getInstance().autoGrabSensor.getDistance(DistanceUnit.INCH) < 2){
+//                currentState = clawStates.CLOSED;
+//            }
+//        }
         Robot.getInstance().wristServo.setPosition(currentWristState.position);
         Robot.getInstance().clawServo.setPosition(currentState.position);
     }
