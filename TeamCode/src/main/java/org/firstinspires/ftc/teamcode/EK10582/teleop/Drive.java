@@ -29,7 +29,7 @@ public class Drive extends EKLinear {
                 //multiplier to make it slower
                 robot.arm1.setPower(armJoystickInput * .2);
                 robot.arm2.setPower(-armJoystickInput * .2);
-            } else{
+            } else {
                 robot.arm1.setPower(0);
                 robot.arm2.setPower(0);
             }
@@ -37,9 +37,9 @@ public class Drive extends EKLinear {
             //slide motor: left stick y
             double slideJoystickInput = driverStation.getSlidePower();
 
-            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02){
+            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02) {
                 robot.clawSlide.setPower(slideJoystickInput);
-            } else{
+            } else {
                 robot.clawSlide.setPower(0);
             }
 
@@ -47,9 +47,15 @@ public class Drive extends EKLinear {
             robot.claw.moveClaw = driverStation.getA2();
             robot.claw.moveWrist = driverStation.getB2();
 
+            if (driverStation.getA1()) {
+                if (robot.mecanumDrive.slowMode == 1)
+                    robot.mecanumDrive.slowMode = 0.5;
+                else if (robot.mecanumDrive.slowMode == 0.5)
+                    robot.mecanumDrive.slowMode = 1;
+            }
+            
             robot.update();
         }
-
     }
 }
 
