@@ -17,7 +17,6 @@ public class DriverStation {
     public DriverStation(Gamepad gamepad1, Gamepad gamepad2) {
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
-//        
     }
 
     //-----------------------first controller------------------------------
@@ -78,6 +77,8 @@ public class DriverStation {
         }
     }
 
+
+
     //----------------------second controller---------------------------------
     public double getSlidePower(){return filterJoystick(gamepad2.left_stick_y);} // motor
 
@@ -85,9 +86,21 @@ public class DriverStation {
 
     public double getWristPosition() { return filterJoystick(gamepad2.right_trigger - gamepad2.left_trigger); } // servo
 
-    public boolean aButton = gamepad2.a;
-    public boolean bButton = gamepad2.b;
-     // servo
+    boolean lateA2 = false;
+    public boolean getA2() {
+        boolean out;
+        out = gamepad2.a && !lateA2;
+        lateA2 = gamepad2.a;
+        return out;
+    }
+
+    boolean lateB2 = false;
+    public boolean getB2() {
+        boolean out;
+        out = gamepad2.b && !lateB2;
+        lateB2 = gamepad2.b;
+        return out;
+    }
 
 //    public double toggleHang(){
 //        return filterJoystick(gamepad2.right_trigger);

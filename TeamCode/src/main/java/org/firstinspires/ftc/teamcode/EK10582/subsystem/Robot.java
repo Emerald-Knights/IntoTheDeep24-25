@@ -16,10 +16,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
+import org.firstinspires.ftc.teamcode.EK10582.auton.action.Action;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.Drive;
 import org.firstinspires.ftc.teamcode.EK10582.teleop.DriverStation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +36,7 @@ public class Robot {
     //declare hardware here
 
     public DcMotorEx leftFront, leftBack, rightFront, rightBack, hangSlide, clawSlide, arm1, arm2;
-
-
-    public Servo tServo1, tServo2;
+    public Servo wristServo;
     public Servo clawServo;
 
     //public Servo Wrist, Hand;
@@ -49,24 +49,15 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
-    public Drive drive = new Drive();
-    DriverStation driverStation = new DriverStation(gamepad1, gamepad2);
-    public Claw claw = new Claw(driverStation);
-    //public AprilTags aprilTags = new AprilTags();
-//    public Elbow elbow = new Elbow();
+    public Claw claw = new Claw();
 
 
-
-    public List<Subsystem> getSubsystems() {
-        return subsystems;
-    }
-
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, hanging, claw);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, claw);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, claw);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
-//    private ArrayList<Action> actions = new ArrayList<Action>();
+    private ArrayList<Action> actions = new ArrayList<Action>();
 
     public ElapsedTime cycleTimer = new ElapsedTime();
 
@@ -81,22 +72,22 @@ public class Robot {
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
         rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
 
-//        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
-//        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+        arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
+        arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
+        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        //clawServo = hardwareMap.get(Servo.class, "clawServo");
-
-        tServo1 = hardwareMap.get(Servo.class, "testServo1");
-        //tServo2 = hardwareMap.get(Servo.class, "testServo2");
         clawServo = hardwareMap.get(Servo.class, "clawServo");
+
+        wristServo = hardwareMap.get(Servo.class, "wristServo");
+        //tServo2 = hardwareMap.get(Servo.class, "testServo2");
 
         leftFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-//        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -133,12 +124,28 @@ public class Robot {
         return robot;
     }
 
+    public void addAction(Action action) {
+        action.start();
+        actions.add(action);
+    }
+
     public void update() {
         //Update every single subsystem in the subsystems array initialized earlier
         for(Subsystem subsystem : subsystems) {
             subsystem.update(linearOpMode.isAuton);
             if(linearOpMode.isStopRequested()){
                 return;
+            }
+        }
+
+        for(int i = 0; i < actions.size(); i++) {
+            actions.get(i).update();
+
+            //if an action is finished, end said action and remove it from the list of things to do
+            if(actions.get(i).isComplete) {
+                actions.get(i).end();
+                actions.remove(i);
+                i--;
             }
         }
 

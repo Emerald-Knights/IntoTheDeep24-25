@@ -17,50 +17,45 @@ public class Drive extends EKLinear {
         waitForStart();
 
         while (opModeIsActive()) {
-
             //drive
-            robot.mecanumDrive.lx = -1 * driverStation.getLeftStickX();
-            robot.mecanumDrive.ly = -1 * driverStation.getLeftStickY();
+            robot.mecanumDrive.lx = -driverStation.getLeftStickX();
+            robot.mecanumDrive.ly = -driverStation.getLeftStickY();
             robot.mecanumDrive.rx = driverStation.getRightStickX();
 
-            //arm motors
+            //arm motors: gamepad2 right stick y
             double armJoystickInput = driverStation.getArmSpeed();
 
-            if (armJoystickInput > 0.02 || armJoystickInput < -0.02){
-                robot.arm1.setPower(armJoystickInput * .8);
-                robot.arm2.setPower(-1 * armJoystickInput * .8);
+            if (armJoystickInput > 0.02 || armJoystickInput < -0.02) {
+                //multiplier to make it slower
+                robot.arm1.setPower(armJoystickInput * .2);
+                robot.arm2.setPower(-armJoystickInput * .2);
+            } else {
+                robot.arm1.setPower(0);
+                robot.arm2.setPower(0);
             }
 
-            // slide motor
-
+            //slide motor: left stick y
             double slideJoystickInput = driverStation.getSlidePower();
 
-            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02){
-                robot.clawSlide.setPower(slideJoystickInput * .8);
+            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02) {
+                robot.clawSlide.setPower(slideJoystickInput);
+            } else {
+                robot.clawSlide.setPower(0);
             }
 
-//
-//            //claw //i think i got the clawslide + servos confused
-//            if(robot.clawSlide.currentState == SubsystemConstants.clawStates.CLOSED)
-//                robot.clawSlide.currentState = SubsystemConstants.clawStates.OPEN;
-//            else
-//                robot.clawSlide.currentState = SubsystemConstants.clawStates.CLOSED;
-/*
-            //hanging
-            robot.hanging.triggerInput = driverStation.toggleHang();
+            //claw
+            robot.claw.moveClaw = driverStation.getA2();
+            robot.claw.moveWrist = driverStation.getB2();
 
-            //apriltags
-            if (driverStation.getDPADUP1()) {
-                Robot.getInstance().aprilTags.decimation++;
+            if (driverStation.getA1()) {
+                if (robot.mecanumDrive.slowMode == 1)
+                    robot.mecanumDrive.slowMode = 0.5;
+                else if (robot.mecanumDrive.slowMode == 0.5)
+                    robot.mecanumDrive.slowMode = 1;
             }
-            if (driverStation.getDPADDOWN1()){
-                Robot.getInstance().aprilTags.decimation--;
-            }*/
-
-
-                robot.update();
+            
+            robot.update();
         }
-
     }
 }
 

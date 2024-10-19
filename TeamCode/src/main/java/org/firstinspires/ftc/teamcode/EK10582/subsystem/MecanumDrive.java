@@ -9,9 +9,7 @@ public class MecanumDrive extends Subsystem{
     public double slowMode;
 
     @Override
-    public void init(boolean auton){
-        slowMode = 0.5;
-    }
+    public void init(boolean auton){ slowMode = 0.5;}
 
     @Override
 
@@ -30,10 +28,10 @@ public class MecanumDrive extends Subsystem{
             ratio = magnitude / max * speed;
         }
 
-        Robot.getInstance().leftFront.setPower(lf*ratio*speed);
-        Robot.getInstance().rightFront.setPower(rf*ratio*speed);
-        Robot.getInstance().leftBack.setPower(lb*ratio*speed);
-        Robot.getInstance().rightBack.setPower(rb*ratio*speed);
+        Robot.getInstance().leftFront.setPower(lf*ratio*speed*slowMode);
+        Robot.getInstance().rightFront.setPower(rf*ratio*speed*slowMode);
+        Robot.getInstance().leftBack.setPower(lb*ratio*speed*slowMode);
+        Robot.getInstance().rightBack.setPower(rb*ratio*speed*slowMode);
 
     }
     @Override

@@ -4,11 +4,21 @@ public class SubsystemConstants {
     public static double SPEED = 0.8;
 
     public enum clawStates {
-        CLOSED(0.0), OPEN(0.2);
+        CLOSED(0.0), OPEN(0.28);
 
         public final double position;
 
         clawStates(double position) {
+            this.position = position;
+        }
+    }
+
+    public enum wristStates {
+        DOWN(1.0), UP(0.85);
+
+        public final double position;
+
+        wristStates(double position) {
             this.position = position;
         }
     }
@@ -20,7 +30,7 @@ public class SubsystemConstants {
     public static double slidesTolerance = 50;
 
     public enum SlideStates {
-        FREE(0), BOTTOM(0), LOW(1115), MEDIUM(1300), ADJUSTABLE(-5);
+        FREE(0), BOTTOM(0), LOW(1115), MEDIUM(1300);
 
         public final double position;
 

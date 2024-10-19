@@ -16,7 +16,7 @@ public class ServoTester extends EKLinear {
         waitForStart();
 
         double targetPos1 = 0.5;
-        double targetPos2 = 0.5;
+        double targetPos2 = 0.2;
 
         while(opModeIsActive()) {
 
@@ -40,11 +40,11 @@ public class ServoTester extends EKLinear {
                 targetPos2 = 0;
             }
 
-            Robot.getInstance().tServo1.setPosition(targetPos1);
-            //Robot.getInstance().tServo2.setPosition(targetPos2);
+            Robot.getInstance().wristServo.setPosition(targetPos1);
+            Robot.getInstance().clawServo.setPosition(targetPos2);
 
             telemetry.addData("Servo Position 1: ", targetPos1);
-           //telemetry.addData("Servo Position 2: ", targetPos2);
+           telemetry.addData("Servo Position 2: ", targetPos2);
             telemetry.update();
             //robot.update();
         }
