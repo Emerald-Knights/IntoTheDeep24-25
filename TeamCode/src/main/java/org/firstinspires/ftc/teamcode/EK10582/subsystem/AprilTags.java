@@ -13,18 +13,12 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-
 public class AprilTags extends Subsystem {
 
     boolean aprilTagsEnabled;
 
-    //The variable to store our instance of the AprilTag processor.
-
     private AprilTagProcessor aprilTag;
     public float decimation;
-
-
-    //The variable to store our instance of the vision portal.
 
     private VisionPortal visionPortal;
     List<AprilTagDetection> currentDetections;
@@ -38,7 +32,6 @@ public class AprilTags extends Subsystem {
     public void init (boolean auton) {
 
         aprilTagsEnabled = true;
-        decimation = 2;
 
         // Create the AprilTag processor.
         aprilTag = new AprilTagProcessor.Builder()
@@ -51,29 +44,15 @@ public class AprilTags extends Subsystem {
                 //.setTagLibrary(AprilTagGameDatabase.getCenterStageTagLibrary())
                 //.setOutputUnits(DistanceUnit.INCH, AngleUnit.DEGREES)
 
-                // == CAMERA CALIBRATION ==
-                // If you do not manually specify calibration parameters, the SDK will attempt
-                // to load a predefined calibration for your camera.
-                //.setLensIntrinsics(578.272, 578.272, 402.145, 221.506)
-                // ... these parameters are fx, fy, cx, cy.
-
                 .build();
 
-        // Adjust Image Decimation to trade-off detection-range for detection-rate.
-        // eg: Some typical detection data using a Logitech C920 WebCam
-        // Decimation = 1 ..  Detect 2" Tag from 10 feet away at 10 Frames per second
-        // Decimation = 2 ..  Detect 2" Tag from 6  feet away at 22 Frames per second
-        // Decimation = 3 ..  Detect 2" Tag from 4  feet away at 30 Frames Per Second (default)
-        // Decimation = 3 ..  Detect 5" Tag from 10 feet away at 30 Frames Per Second (default)
-        // Note: Decimation can be changed on-the-fly to adapt during a match.
-        aprilTag.setDecimation(decimation);
+        aprilTag.setDecimation(3);
 
         // Create the vision portal by using a builder.
         VisionPortal.Builder builder = new VisionPortal.Builder();
 
         // Set the camera (webcam vs. built-in RC phone camera).
         builder.setCamera(Robot.getInstance().camera);
-
 
         // Set and enable the processor.
         builder.addProcessor(aprilTag);
@@ -137,4 +116,4 @@ public class AprilTags extends Subsystem {
         return 1.00298575 * dist + 1.074626865;
     }
 
-}
+}   // end class

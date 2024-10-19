@@ -7,7 +7,6 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 public class CameraPipeline extends OpenCvPipeline {
 
-
     double percentError = 0.6;
     double[] replacementColor = {0, 255, 0, 1};
     double[] targetColor = {185, 35, 30};
@@ -29,8 +28,6 @@ public class CameraPipeline extends OpenCvPipeline {
         }
         return output;
     }
-
-
 
     public boolean compareColor(double[] target, double[] current){
         for (int i = 0; i <= 2; i++){
