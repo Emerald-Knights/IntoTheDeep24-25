@@ -7,42 +7,37 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 public class CameraPipeline extends OpenCvPipeline {
 
-    double[] targetColor = {161,39.5,55.5};
+
+    double percentError = 0.6;
     double[] replacementColor = {0, 255, 0, 1};
-
-    double percentError = 0.5;
-
-
-    Mat output = new Mat();
+    double[] targetColor = {185, 35, 30};
 
     @Override
     public Mat processFrame(Mat input) {
-
         Size dimensions = input.size();
         double height = dimensions.height;
         double width = dimensions.width;
 
-        output = input.clone();
-
-
-        for(int j = 0; j < height; j++){ //height
-            for(int k = 0; k < width; k++){ //width
-                double[] currentColor = output.get(j,k); //color of each pixel
-                if(compareColor(targetColor, currentColor, percentError)){
-                    output.put(j,k, replacementColor); //if color is target color, change color
+        Mat output = input.clone();
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++){
+                double[] currentColor = output.get(j,i);
+                if (compareColor(targetColor, currentColor)){
+                    output.put(j,i,replacementColor);
                 }
             }
         }
-        
         return output;
-
     }
 
-    public boolean compareColor(double[] targ, double[] cur, double percentError){
-        if (Math.abs(targ[0] - cur[0]) < percentError * targ[0] && Math.abs(targ[1] - cur[1]) < percentError*targ[1] && Math.abs(targ[2] - cur[2]) < percentError*targ[2]){
-            return true;
+
+
+    public boolean compareColor(double[] target, double[] current){
+        for (int i = 0; i <= 2; i++){
+            if (!(target[i] * (1-percentError)  <= current[i] && target[i] * (1+percentError)>= current[i])){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
-
 }
