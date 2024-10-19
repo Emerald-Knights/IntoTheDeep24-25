@@ -36,7 +36,7 @@ public class Claw extends Subsystem{
                 case -1:
                     Robot.getInstance().clawServo.setPosition(clawStates.CLOSED.position);
                     break;
-            }
+            }   
         }
          else{
              currentState = clawStates.CLOSED;
