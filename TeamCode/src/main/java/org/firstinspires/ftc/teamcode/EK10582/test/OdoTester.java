@@ -16,16 +16,14 @@ public class OdoTester extends EKLinear {
     @Override
     public void runOpMode() {
 
-        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "slide2"));
-        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "hanging"));
-        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "intakeSpin"));
-        frontEncoder.setDirection(Encoder.Direction.REVERSE);
+        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightBack"));
+        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftBack"));
+        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightFront"));
+        leftEncoder.setDirection(Encoder.Direction.REVERSE);
+        rightEncoder.setDirection(Encoder.Direction.REVERSE);
         waitForStart();
 
         while(opModeIsActive()) {
-            //back is intake spin
-            //left is slide 2
-            //right is hanging
             telemetry.addData("backOdo", frontEncoder.getCurrentPosition());
             telemetry.addData("rightOdo", rightEncoder.getCurrentPosition());
             telemetry.addData("leftOdo", leftEncoder.getCurrentPosition());
