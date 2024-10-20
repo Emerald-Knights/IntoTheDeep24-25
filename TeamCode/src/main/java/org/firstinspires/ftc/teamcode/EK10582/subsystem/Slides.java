@@ -60,15 +60,18 @@ public class Slides extends Subsystem{
 
     //ADD IT TO SPEED AFTER TUNING
     public void setSlidesPower(double input) {
+
+
+        double ff = Math.pow(getSlidesPosition() / SubsystemConstants.MAX_CLAWSLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
+        double total = input + ff;
+        double power = (Math.abs(total) > 0.8) ? 0.8 * (total / Math.abs(total)) : total;
+
         if((getSlidesPosition() < LOWERLIMIT && input < 0) || (getSlidesPosition() > UPPERLIMIT && input > 0)) {
             Robot.getInstance().arm1.setPower(0);
             Robot.getInstance().arm2.setPower(0);
             return;
         }
 
-        double ff = Math.pow(getSlidesPosition() / SubsystemConstants.MAX_CLAWSLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
-        double total = input + ff;
-        double power = (Math.abs(total) > 0.8) ? 0.8 * (total / Math.abs(total)) : total;
         Robot.getInstance().clawSlide.setPower(power * MAXSLIDESPEED);
         motorSpeed = power;
         this.ff = ff;
