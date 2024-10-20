@@ -20,40 +20,38 @@ public class Drive extends EKLinear {
             //drive
             robot.mecanumDrive.lx = -driverStation.getLeftStickX();
             robot.mecanumDrive.ly = -driverStation.getLeftStickY();
-            robot.mecanumDrive.rx = driverStation.getRightStickX();
+            robot.mecanumDrive.rx = -driverStation.getRightStickX();
+
+            //slowmode
+            if (driverStation.getA1()) {
+                if (robot.mecanumDrive.slowMode == 1)
+                    robot.mecanumDrive.slowMode = 0.5;
+                else {
+                    robot.mecanumDrive.slowMode = 1;
+                }
+            }
+
 
             //arm motors: gamepad2 right stick y
-            double armJoystickInput = driverStation.getArmSpeed();
 
-            if (armJoystickInput > 0.02 || armJoystickInput < -0.02) {
-                //multiplier to make it slower
-                robot.arm1.setPower(armJoystickInput * .2);
-                robot.arm2.setPower(-armJoystickInput * .2);
-            } else {
-                robot.arm1.setPower(0);
-                robot.arm2.setPower(0);
-            }
+//            if (armJoystickInput > 0.02 || armJoystickInput < -0.02) {
+//                //multiplier to make it slower
+//                robot.arm1.setPower(armJoystickInput * .2);
+//                robot.arm2.setPower(-armJoystickInput * .2);
+//            } else {
+//                robot.arm1.setPower(0);
+//                robot.arm2.setPower(0);
+//            }
 
-            //slide motor: left stick y
-            double slideJoystickInput = driverStation.getSlidePower();
-
-            if (slideJoystickInput > 0.02 || slideJoystickInput < -0.02) {
-                robot.clawSlide.setPower(slideJoystickInput);
-            } else {
-                robot.clawSlide.setPower(0);
-            }
+            //elbow
+            robot.elbow.joystickInput = driverStation.getRY2();
+            //slides
+            robot.slides.joystickInput = driverStation.getLY2();
 
             //claw
             robot.claw.moveClaw = driverStation.getA2();
             robot.claw.moveWrist = driverStation.getB2();
 
-            if (driverStation.getA1()) {
-                if (robot.mecanumDrive.slowMode == 1)
-                    robot.mecanumDrive.slowMode = 0.5;
-                else if (robot.mecanumDrive.slowMode == 0.5)
-                    robot.mecanumDrive.slowMode = 1;
-            }
-            
             robot.update();
         }
     }

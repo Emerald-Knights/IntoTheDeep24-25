@@ -122,4 +122,3 @@
 
       12. ### Action
           Action are the different actions for Autonomous mode by combining different actions like grabbing with the claw and moving it into one
-
