@@ -80,9 +80,9 @@ public class DriverStation {
 
 
     //----------------------second controller---------------------------------
-    public double getSlidePower(){return filterJoystick(gamepad2.left_stick_y);} // motor
+    public double getLY2(){return filterJoystick(gamepad2.left_stick_y);} // motor
 
-    public double getArmSpeed() { return filterJoystick(gamepad2.right_stick_y); } // motor, limit max speed
+    public double getRY2() { return filterJoystick(gamepad2.right_stick_y); } // motor, limit max speed
 
     public double getWristPosition() { return filterJoystick(gamepad2.right_trigger - gamepad2.left_trigger); } // servo
 

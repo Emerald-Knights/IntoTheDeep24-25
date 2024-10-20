@@ -14,7 +14,7 @@ public class SubsystemConstants {
     }
 
     public enum wristStates {
-        DOWN(1.0), UP(0.85);
+        DOWN(1.0), UP(0.85), FOLDED(0.4);
 
         public final double position;
 
@@ -25,7 +25,8 @@ public class SubsystemConstants {
 
     // slides (ripped from centerstage)
     public static double SLIDES_TICKS_TO_INCHES = 0.010722;
-    public static double MAX_SLIDE_HEIGHT = 1632;
+    public static double MAX_CLAWSLIDE_HEIGHT = 6600;
+    public static double MAX_ELBOW_LIMIT = 1632;
     public static double MAX_FEEDFORWARD = 0.2;
     public static double slidesTolerance = 50;
 
@@ -40,7 +41,7 @@ public class SubsystemConstants {
     }
 
     public enum ArmStates {
-        FREE(0), GROUND(-1000), UP(2000);
+        FREE(0), GROUND(0), UP(2000);
 
         public final int position;
 

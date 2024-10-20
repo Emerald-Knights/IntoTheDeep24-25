@@ -53,11 +53,12 @@ public class Robot {
     public MecanumDrive mecanumDrive = new MecanumDrive();
     public Slides slides = new Slides();
     public Hanging hanging = new Hanging();
+    public Elbow elbow = new Elbow();
     public Claw claw = new Claw();
 
 
-    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, claw);
-    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, claw);
+    public List<Subsystem> subsystems = Arrays.asList(mecanumDrive, slides, elbow, claw);
+    public List<Subsystem> telemetrySubsystems = Arrays.asList(mecanumDrive, slides, elbow, claw);
 
 
     //Creates an arraylist called actions that stores all the actions that are currently being done
@@ -78,7 +79,13 @@ public class Robot {
 
         arm1 = hardwareMap.get(DcMotorEx.class, "arm1");
         arm2 = hardwareMap.get(DcMotorEx.class, "arm2");
-        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        arm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        arm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        arm1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         clawServo = hardwareMap.get(Servo.class, "clawServo");
 
@@ -99,6 +106,8 @@ public class Robot {
 
 
         clawSlide = hardwareMap.get(DcMotorEx.class, "clawSlide");
+        clawSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        clawSlide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         //TODO: Autograb
 //        autoGrabSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
@@ -113,7 +122,7 @@ public class Robot {
         imu.resetYaw();
 
         //TODO: Apriltags Camera
-        //camera = hardwareMap.get(WebcamName.class, "Webcam 1");
+        camera = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //OpenCV Camera
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());

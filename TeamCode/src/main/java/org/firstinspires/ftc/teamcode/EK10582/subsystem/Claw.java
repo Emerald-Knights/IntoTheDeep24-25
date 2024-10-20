@@ -14,9 +14,7 @@ public class Claw extends Subsystem{
 
     public void init(boolean isAuton){
         currentState = clawStates.CLOSED;
-        currentWristState = wristStates.DOWN;
-        Robot.getInstance().clawServo.setPosition(clawStates.CLOSED.position);
-        Robot.getInstance().clawServo.setPosition(wristStates.DOWN.position);
+        currentWristState = wristStates.FOLDED;
     }
 
     public void update(boolean isAuton){

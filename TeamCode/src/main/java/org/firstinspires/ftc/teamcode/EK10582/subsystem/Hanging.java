@@ -50,7 +50,7 @@ public class Hanging extends Subsystem {
     }
 
     public void sethSlidesPower(double input) {
-        double ff = Math.pow(getHangSlidePosition() / SubsystemConstants.MAX_SLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
+        double ff = Math.pow(getHangSlidePosition() / SubsystemConstants.MAX_CLAWSLIDE_HEIGHT, 6) * SubsystemConstants.MAX_FEEDFORWARD;
         double total = input + ff;
         double power = (Math.abs(total) > 0.8) ? 0.8 * (total / Math.abs(total)) : total;
         Robot.getInstance().clawSlide.setPower(power);
