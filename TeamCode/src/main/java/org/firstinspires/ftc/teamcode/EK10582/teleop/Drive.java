@@ -18,9 +18,9 @@ public class Drive extends EKLinear {
 
         while (opModeIsActive()) {
             //drive
-            robot.mecanumDrive.lx = -driverStation.getLeftStickX();
-            robot.mecanumDrive.ly = -driverStation.getLeftStickY();
-            robot.mecanumDrive.rx = -driverStation.getRightStickX();
+            robot.mecanumDrive.lx = driverStation.getLeftStickX();
+            robot.mecanumDrive.ly = driverStation.getLeftStickY();
+            robot.mecanumDrive.rx = driverStation.getRightStickX();
 
             //slowmode
             if (driverStation.getA1()) {

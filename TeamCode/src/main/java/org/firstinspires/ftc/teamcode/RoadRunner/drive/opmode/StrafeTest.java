@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
 
 /*
@@ -16,12 +17,14 @@ import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
  */
 @Config
 @Autonomous(group = "drive")
-public class StrafeTest extends LinearOpMode {
+public class StrafeTest extends EKLinear {
     public static double DISTANCE = 60; // in
 
     @Override
     public void runOpMode() throws InterruptedException {
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
+
+        waitForStart();
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
@@ -29,7 +32,7 @@ public class StrafeTest extends LinearOpMode {
                 .strafeRight(DISTANCE)
                 .build();
 
-        waitForStart();
+
 
         if (isStopRequested()) return;
 

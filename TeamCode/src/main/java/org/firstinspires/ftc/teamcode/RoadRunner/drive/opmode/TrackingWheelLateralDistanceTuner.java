@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.RobotLog;
 
+import org.firstinspires.ftc.teamcode.EK10582.EKLinear;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunner.drive.StandardTrackingWheelLocalizer;
 
@@ -63,11 +64,13 @@ import org.firstinspires.ftc.teamcode.RoadRunner.drive.StandardTrackingWheelLoca
  */
 @Config
 @TeleOp(group = "drive")
-public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
+public class TrackingWheelLateralDistanceTuner extends EKLinear {
     public static int NUM_TURNS = 10;
 
     @Override
     public void runOpMode() throws InterruptedException {
+        waitForStart();
+
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         if (!(drive.getLocalizer() instanceof StandardTrackingWheelLocalizer)) {
@@ -83,7 +86,7 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
         telemetry.addLine("Press Y/△ to stop the routine.");
         telemetry.update();
 
-        waitForStart();
+
 
         if (isStopRequested()) return;
 
@@ -96,7 +99,7 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
         boolean tuningFinished = false;
 
         while (!isStopRequested() && !tuningFinished) {
-            Pose2d vel = new Pose2d(0, 0, -gamepad1.right_stick_x);
+            Pose2d vel = new Pose2d(0, 0, 0.5 * -gamepad1.right_stick_x);
             drive.setDrivePower(vel);
 
             drive.update();
